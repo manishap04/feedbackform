@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import { base_url } from './port';
 function App() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [name, setName] = useState('');
@@ -15,7 +15,7 @@ function App() {
 
   const fetchFeedback = async () => {
     try {
-      const response = await fetch('/api/posts');
+      const response = await fetch(`${base_url}/api/posts`);
       const data = await response.json();
       setFeedback(data);
     } catch (error) {
@@ -33,7 +33,7 @@ function App() {
     };
 
     try {
-      const response = await fetch('/api/posts', {
+      const response = await fetch(`${base_url}/api/posts`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
